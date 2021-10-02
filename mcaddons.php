@@ -3,7 +3,7 @@
  * Plugin Name: MC addons
  * Plugin URI: https://flowragency.com
  * Description: Display content using a shortcode to insert in a page or post
- * Version: 2.3.4
+ * Version: 2.4
  * Text Domain: mc-addons
  * Author: Loic Moncany
  * Author URI: https://flowragency.com
