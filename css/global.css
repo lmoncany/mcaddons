@@ -1,0 +1,61 @@
+/* global styles for all MC sites */
+.opening_hours p {
+  text-align: center !important;
+}
+
+
+.owl-carousel .owl-item img {
+    height:auto;
+    width:100%;
+    display: block;
+}
+
+.owl-carousel .item {
+    margin:0px;
+}
+
+
+/* single business */
+
+.review .name {
+    font-weight: bold;
+}/* End custom CSS */
+/* Start custom CSS for shortcode, class: .elementor-element-81bb8fb */.review {
+   background: white !important;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    margin:15px 0;
+    border: 2px solid #DB234B;
+    border-radius: 10px;
+}
+.review .name {
+    font-weight: bold;
+}/* End custom CSS */
+
+
+.gold {
+  background: #FFC400 !important;
+  color: white !important;
+
+}
+
+.sponsor {
+  background: #333333 !important;
+  color: white !important;
+}
+
+.partner {
+  background: #DB234B !important;
+  color: white !important;
+}
+
+.member {
+  background: #50D6CF !important;
+  color: white !important;
+}
+
+.social a:hover {
+  background: #333333 !important;
+  color: white !important;
+}
