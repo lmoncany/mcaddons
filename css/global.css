@@ -20,6 +20,10 @@ GitHub Plugin URI: https://github.com/lmoncany/mcaddons
     margin:0px;
 }
 
+.btn-dark {
+  background: var( --e-global-color-accent );
+}
+
 
 /* single business */
 
@@ -60,6 +64,26 @@ GitHub Plugin URI: https://github.com/lmoncany/mcaddons
   background: #50D6CF !important;
   color: white !important;
 }
+
+/* font-color-status */
+
+.color-gold {
+  color: #FFC400 !important;
+
+}
+
+.color-sponsor {
+  color: #333333 !important;
+}
+
+.color-partner {
+  color: #DB234B !important;
+}
+
+.color-member {
+  color: #50D6CF !important;
+}
+
 
 .social a:hover {
   background: #333333 !important;

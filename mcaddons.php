@@ -3,7 +3,7 @@
  * Plugin Name: MC addons
  * Plugin URI: https://flowragency.com
  * Description: Display content using a shortcode to insert in a page or post
- * Version: 2.3.4
+ * Version: 2.4
  * Text Domain: mc-addons
  * Author: Loic Moncany
  * Author URI: https://flowragency.com
@@ -60,7 +60,7 @@ include_once('updater.php');
 
 
  /*  add ozlcqrousel */
- add_action('wp_footer', 'add_owlcarousel');
+ //add_action('wp_footer', 'add_owlcarousel');
  function add_owlcarousel(){
  ?>
  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
@@ -74,120 +74,73 @@ include_once('updater.php');
 
 
 
-// get image Gallery
- function get_remote_gallery($atts) {
+ // get image Gallery
+  function get_remote_gallery($atts) {
 
 
 
-   $slug = get_post_field( 'post_name', get_post() );
-   $id = get_post_field( 'id', get_post() );
+    $slug = get_post_field( 'post_name', get_post() );
+    $id = get_post_field( 'id', get_post() );
 
 
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
 
-    $body = wp_remote_retrieve_body( $request );
-    $data = json_decode( $body );
+     $body = wp_remote_retrieve_body( $request );
+     $data = json_decode( $body );
+     $gallery_images = $data[0]->image_upload_2;
+     $business_id = $data[0]->id;
+     $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
 
-    $business_id = $data[0]->id;
-    $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
+     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id);
+     $body = wp_remote_retrieve_body( $request );
+     $dataGallery = json_decode( $body );
 
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id);
-    $body = wp_remote_retrieve_body( $request );
-    $dataGallery = json_decode( $body );
-
-    $gallery_attached = $dataGallery;
-    // echo var_dump($gallery_images);
-    // echo '<hr>';
-
-
-    // image source
-    //  https://malta-communities.com/wp-json/wp/v2/media/[ID]
-
-    if ( is_wp_error( $request ) ) {
-       return false;
-    } else {
-          // $gallery = $data["image_upload_1"];
-           // return var_dump($data["_embedded"]["wp:featuredmedia"][0]["source_url"] );
+     $gallery_attached = $dataGallery;
+     // echo var_dump($gallery_images);
+     // echo '<hr>';
 
 
-            // return var_dump($gallery_images);
-            echo '<div class="owl-carousel">';
-            foreach ($gallery_attached as $key => $jsons) {
+     // image source
+     //  https://malta-communities.com/wp-json/wp/v2/media/[ID]
 
-              foreach($jsons as $key => $value) {
-                if($key == 'id'){
-                //echo $key . "<br>" . $value;
-                $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
-                  if ($url != null) {
-                echo '<div class="item">
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" /></a>
-                </div>';
-                }
+     if ( is_wp_error( $request ) ) {
+        return false;
+     } else {
+           // $gallery = $data["image_upload_1"];
+            // return var_dump($data["_embedded"]["wp:featuredmedia"][0]["source_url"] );
 
-                }
 
-                }
+             // return var_dump($gallery_images);
+             echo '<div class="owl-carousel">';
+             foreach ($gallery_attached as $key => $jsons) {
 
-            }
+               foreach($jsons as $key => $value) {
+                 if($key == 'id'){
+                 //echo $key . "<br>" . $value;
+                 $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
+                 // echo  '<img src=' . get_image_url($url) . ">";
+                 echo '<div class="item">
+                 <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" />
+                 </div>';
+                 }
 
-            echo '</div><script>
-            jQuery(document).ready(function($) {
-            jQuery(".owl-carousel").addClass(".owl-theme");
-                 jQuery(".owl-carousel").owlCarousel({
-               loop: true,
-                autoHeight:true,
-               autoplay: true,
-                 margin: 0,
-                 navigation: true,
-               dots: false,
-                 items: 3,
-               });
-             });
+                 }
 
-            </script>';
+             }
 
-    }
+             echo '</div>';
+
+     }
 
 
 
 
 
-}
-
-add_shortcode('remote-gallery', 'get_remote_gallery');
-
-
-
-// setup header hero images
-
-// get image Gallery
- function get_remote_hero($atts) {
+ }
+ add_shortcode('remote-gallery', 'get_remote_gallery');
 
 
 
-   $slug = get_post_field( 'post_name', get_post() );
-
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
-
-    $body = wp_remote_retrieve_body( $request );
-    $data = json_decode( $body );
-    $hero_image = $data[0]->cover_image;
-
-    $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $hero_image;
-
-    if ( is_wp_error( $request ) ) {
-       return false;
-    } else {
-      if (!empty($url)) {
-      echo '
-    <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" />';
-  }
-    }
-
-  }
-
-  add_shortcode('remote-hero', 'get_remote_hero');
 
 
 // get image url of a post
@@ -228,36 +181,28 @@ function get_image_url($url) {
    </div>
    <script async defer
      src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAY50ddOWaLBeuRz8tRrgZ_fjAK9cA3OT0&v=3.24&callback=renderMap$rand'></script>
-   <script>
-     function renderMap$rand(){
-       var mapCanvas = document.getElementById('address-map$rand');
-       if(!mapCanvas) return;
-       var latLang = new google.maps.LatLng($lat, $lng);
-       var mapOptions = {
-         disableDefaultUI: $disable_default_UI,
-         center: latLang,
-         zoom: $zoom,
-         mapTypeId: google.maps.MapTypeId.ROADMAP,
-         scrollwheel: false,
-         styles: [{
-           stylers: [{
-             saturation: -100
-           }]
-         }]
-       }
-       var map = new google.maps.Map(mapCanvas, mapOptions);
-       var marker = new google.maps.Marker({
-         position: latLang,
-         map: map,
-         title: '$title',
-         icon: '$icon',
+     <script>
+       function renderMap$rand(){
+         var mapCanvas = document.getElementById('address-map$rand');
+         if(!mapCanvas) return;
+         var latLang = new google.maps.LatLng($lat, $lng);
+         var mapOptions = {
+           disableDefaultUI: false,
+           center: latLang,
+           overviewMapControl: false,
+           zoom: $zoom,
+           mapTypeId: google.maps.MapTypeId.ROADMAP,
+           scrollwheel: true,
+         }
+         var map = new google.maps.Map(mapCanvas, mapOptions);
+         var marker = new google.maps.Marker({
+           position: latLang,
+           map: map,
+           title: '$title',
+           icon: '$icon'
          });
-
-
-
-     };
-
-   </script>";
+       };
+     </script>";
 
  }
  add_shortcode('gmap-location', 'google_map_location');
