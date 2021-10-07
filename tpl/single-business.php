@@ -42,8 +42,7 @@ background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 
 /*  info bar section 2  */
 .infobar {
-	background-color: transparent;
-    background-image: #25B1AA;
+background: #25B1AA;
 min-height: 50px;
 text-align: right;
 padding: 0 8%;
