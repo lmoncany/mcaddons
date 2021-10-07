@@ -262,6 +262,7 @@ while ( have_posts() ) :
 		$website_url =  get_post_meta(get_the_ID(), 'website_url', TRUE);
 		$phone =  get_post_meta(get_the_ID(), 'phone_number__for_customer_', TRUE);
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
+		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 	?>
 
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
@@ -367,7 +368,12 @@ while ( have_posts() ) :
 			<?php if ( $status != 'partner' && $status != 'member' ) : ?>
 				<div class="bloc__card">
 						 <h4 class="bloc__card--title"><?php _e('Contact', 'mcaddons'); ?></h4>
-					<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
+
+						 <?php if ( $shortcode_form ) { ?>
+							<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
+						<?php } else { ?>
+							<p>Formulaire indisponible</p>
+						<?php } ?>
 				</div>
 			<?php endif; ?>
 
