@@ -43,8 +43,7 @@ background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 /*  info bar section 2  */
 .infobar {
 	background-color: transparent;
-    background-image: linear-gradient(
--90deg, var( --e-global-color-51a48a0 ) 0%, #25B1AA 54%);
+    background-image: #25B1AA;
 min-height: 50px;
 text-align: right;
 padding: 0 8%;
