@@ -94,6 +94,7 @@ aside {
 	text-align: center;
 	margin: 0 10px;
 	margin-top: -150px;
+	background: white;
 }
 
 .attachment-post-thumbnail {
