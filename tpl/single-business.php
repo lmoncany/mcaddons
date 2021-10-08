@@ -366,13 +366,13 @@ while ( have_posts() ) :
 			</div>
 
 			<?php if ( $status != 'partner' && $status != 'member' ) : ?>
-				<div class="bloc__card">
+				<div class="bloc__card contact_form">
 						 <h4 class="bloc__card--title"><?php _e('Contact', 'mcaddons'); ?></h4>
 
 						 <?php if ( $shortcode_form ) { ?>
 							<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
 						<?php } else { ?>
-							<p>Formulaire indisponible</p>
+							<p class="no_form">Formulaire indisponible</p>
 						<?php } ?>
 				</div>
 			<?php endif; ?>

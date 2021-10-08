@@ -215,7 +215,7 @@ function display_client_reviews($atts) {
 
 $repeat_field = get_post_meta( get_the_ID(), 'client_reviews_copy');
 ob_start();
-  if ( $repeat_field ) {
+  if ( $repeat_field  != null) {
   echo '<div>';
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );

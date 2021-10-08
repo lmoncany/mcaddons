@@ -7,6 +7,12 @@
 jQuery( document ).ready(function() {
 
 
+      if($('p.no_form').text() == "Formulaire indisponible"){
+    console.log('no contact form');	
+    $('.contact_form' ).hide();
+      }
+
+
     jQuery(document).ready(function($) {
     jQuery(".owl-carousel").addClass(".owl-theme");
          jQuery(".owl-carousel").owlCarousel({
