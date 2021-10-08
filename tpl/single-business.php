@@ -399,7 +399,7 @@ while ( have_posts() ) :
 			<?php endif; ?>
 
 
-			<div class="bloc__content">
+			<div class="bloc__content bloc__reviews">
 				<h3><?php _e('My clients', 'mcaddons'); ?></h3>
 					<?php  echo do_shortcode('[client-reviews]'); ?>
 			</div>

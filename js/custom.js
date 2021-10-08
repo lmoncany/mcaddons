@@ -12,6 +12,10 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 
+      if(jQuery('p.testimonial').text() == ""){
+    jQuery('.bloc__reviews' ).hide();
+      }
+
 
     jQuery(document).ready(function($) {
     jQuery(".owl-carousel").addClass(".owl-theme");
