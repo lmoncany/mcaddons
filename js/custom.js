@@ -7,9 +7,9 @@
 jQuery( document ).ready(function() {
 
 
-      if($('p.no_form').text() == "Formulaire indisponible"){
-    console.log('no contact form');	
-    $('.contact_form' ).hide();
+      if(jQuery('p.no_form').text() == "Formulaire indisponible"){
+    console.log('no contact form');
+    jQuery('.contact_form' ).hide();
       }
 
 
