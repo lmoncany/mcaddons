@@ -360,7 +360,7 @@ while ( have_posts() ) :
 
 
 
-			<div class="bloc__card">
+			<div class="bloc__card bloc__location">
 					 <h4 class="bloc__card--title"><?php _e('Location', 'mcaddons'); ?></h4>
 				<?php  echo do_shortcode('[gmap-location]'); ?>
 			</div>
