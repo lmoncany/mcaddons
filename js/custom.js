@@ -12,7 +12,7 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 
-      if(jQuery('p.testimonial').val().length < 0){
+      if(jQuery('p.testimonial').text() == ""){
     jQuery('.bloc__reviews' ).hide();
       }
 
