@@ -16,7 +16,7 @@ jQuery( document ).ready(function() {
     jQuery('.bloc__reviews' ).hide();
       }
 
-      if(jQuery('google-map-wrap > div').is(':empty')){
+      if(jQuery('.google-map-wrap > div').is(':empty')){
     jQuery('.bloc__location' ).hide();
       }
 
