@@ -39,7 +39,6 @@ background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 }
 
 
-
 /*  info bar section 2  */
 .infobar {
 background: #25B1AA;
@@ -175,6 +174,16 @@ section#content {
 	line-height: 2.2em;
 }
 
+.owl-carousel .owl-wrapper {
+    display: flex !important;
+}
+.owl-carousel .owl-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: initial;
+}
+
 
 /* headings */
 h3 {
@@ -263,6 +272,7 @@ while ( have_posts() ) :
 		$phone =  get_post_meta(get_the_ID(), 'phone_number__for_customer_', TRUE);
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
+		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
 	?>
 
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
@@ -334,6 +344,7 @@ while ( have_posts() ) :
 				?>
 
 
+
 				 	<div class="social">
 
 					<?php if ( $facebook_url_copy ) : ?>
@@ -359,11 +370,17 @@ while ( have_posts() ) :
 			</div>
 
 
-
+			<?php if ( $business_location ) : ?>
 			<div class="bloc__card bloc__location">
+				<div class="title" style="display: flex; align-items:baseline;justify-content: space-between">
 					 <h4 class="bloc__card--title"><?php _e('Location', 'mcaddons'); ?></h4>
+ 						<a href="	<?php echo 'http://maps.google.com/?q='.$business_location['lat'].','.$business_location['lng']; ?>" target="_blank" class="" role="button">
+ 								Direction
+ 						 </a>
+				 </div>
 				<?php  echo do_shortcode('[gmap-location]'); ?>
 			</div>
+ 			<?php endif; ?>
 
 			<?php if ( $status != 'partner' && $status != 'member' ) : ?>
 				<div class="bloc__card contact_form">
@@ -407,7 +424,16 @@ while ( have_posts() ) :
 
 			<div class="bloc__content">
 				<h3><?php _e('My pictures', 'mcaddons'); ?></h3>
-				<?php  echo do_shortcode('[remote-gallery]');				 ?>
+				<?php // echo do_shortcode('[remote-gallery]');				 ?>
+
+				<?php
+				$images = get_post_meta(get_the_ID(), 'image_upload_1', TRUE);
+
+				$idImages = implode(', ', $images);
+
+				echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
+
+				?>
 			</div>
 
 			<?php if ( $download_link ) : ?>

@@ -41,20 +41,96 @@
  ###############
 
 
- /*  add ozlcqrousel */
- //add_action('wp_footer', 'add_owlcarousel');
- function add_owlcarousel(){
- ?>
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.theme.default.min.css">
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>
- <?php
- };
 
 
+ add_shortcode( 'gallerie', 'modified_gallery_shortcode' );
 
+ function modified_gallery_shortcode($attr)
+ {
+     // Replace WP gallery with OWL Carousel using gallery shortcode -- just add `owl=true`
+     //
+     // [gallery owl="true" link="none" size="medium" ids="378,377,376,375,374,373"]
+
+     if( isset($attr['owl']))
+     {
+         $attr['itemtag']="span";
+
+         $output = gallery_shortcode($attr);
+
+         $output = strip_tags($output,'<a><img><span><figcaption>'); // remove extra tags, but keep these
+         $output = str_replace("span", "div", $output); // replace span for div -- removes gallery wrap
+         $output = str_replace('gallery-item', "item", $output); // remove class attribute
+
+         $output = "<div class=\"owl-carousel\" >$output</div>"; // wrap in div
+
+         // begin styles and js
+
+         static $js_loaded; // only create once
+         if( empty ( $js_loaded )) {
+
+         ob_start();
+         ?>
+         <style>
+             .owl-carousel .item{
+                 margin: 3px;
+             }
+             .owl-carousel .item img{
+                 display: block;
+                 width: 100%;
+                 height: auto;
+             }
+         </style>
+         <script defer src="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.js"></script>
+         <script>
+             jQuery('head').append('<link defer id="owl-carousel-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.css" type="text/css" />');
+             jQuery('head').append('<link defer id="owl-theme-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.theme.css" type="text/css" />');
+
+             jQuery(document).ready(function () {
+
+                 // pulling example from -- including CSS
+                 // http://owlgraphic.com/owlcarousel/demos/images.html
+
+                 // notice I replaced #id with .class for when you want to have more than one on a page
+                 jQuery(".owl-carousel").owlCarousel({
+                   loop: true,
+                   autoHeight:false,
+                   autoplay: true,
+                     margin: 10,
+                     nav: true,
+                     navigation: true,
+                     navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+                   dots: false,
+                     items: 3,
+                     responsiveClass:true,
+                      responsive:{
+                          0:{
+                              items:1
+                          },
+                          600:{
+                              items:3
+                          },
+                          1000:{
+                              items:3
+                          }
+                      }
+                 });
+             });
+         </script>
+         <?php
+         $js_loaded = ob_get_clean(); // store in static var
+
+         // add the HTML output
+         $output .= $js_loaded;
+         }
+     }
+     else
+     {
+         // default gallery
+         $output = gallery_shortcode($attr);
+     }
+
+     return $output; // final html
+   }
 
  // get image Gallery
   function get_remote_gallery($atts) {
@@ -95,14 +171,16 @@
              // return var_dump($gallery_images);
              echo '<div class="owl-carousel">';
              foreach ($gallery_attached as $key => $jsons) {
-
                foreach($jsons as $key => $value) {
-                 if($key == 'id'){
-                 //echo $key . "<br>" . $value;
-                 $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
-                 // echo  '<img src=' . get_image_url($url) . ">";
-                 echo '<div class="item">
-                 <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" />
+                 $images_type = $jsons->media_details->sizes->large->mime_type;
+                 $images_url = $jsons->media_details->sizes->large->source_url;
+                 $images_content = $jsons->media_details->sizes->large;
+                 //var_dump($images_content);
+
+                   if($key == 'id' && $images_type != 'image/gif' && $images_content != null){
+
+                echo '<div class="item">
+                 <img class="img-responsive" src="' . $images_url . '" />
                  </div>';
                  }
 
