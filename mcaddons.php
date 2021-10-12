@@ -3,7 +3,7 @@
  * Plugin Name: MC addons
  * Plugin URI: https://flowragency.com
  * Description: Display content using a shortcode to insert in a page or post
- * Version: 2.3.4
+ * Version: 2.4.3
  * Text Domain: mc-addons
  * Author: Loic Moncany
  * Author URI: https://flowragency.com
@@ -12,12 +12,6 @@
  ###############
  # Defaults and options
  ###############
-
- define( 'PREFIX_PLUGIN_VERSION', '2.3.4' ); // when new release is read change verion in plugin definition as well as here
- define( 'PREFIX_DOMAIN', 'https://malta-communities.com' ); // replace with your domain, used in  lines 57 and 114
- define( 'PREFIX_REPOFOLDER', 'repositoryfolder' ); // replace wiht your folder, used in lines 57 and 114
-
-
 
  /**
   * Never worry about cache again!
@@ -47,135 +41,166 @@
  ###############
 
 
- /*  add ozlcqrousel */
- add_action('wp_footer', 'add_owlcarousel');
- function add_owlcarousel(){
- ?>
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.theme.default.min.css">
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>
- <?php
- };
 
 
+ add_shortcode( 'galler2y', 'modified_gallery_shortcode' );
 
+ function modified_gallery_shortcode($attr)
+ {
+     // Replace WP gallery with OWL Carousel using gallery shortcode -- just add `owl=true`
+     //
+     // [gallery owl="true" link="none" size="medium" ids="378,377,376,375,374,373"]
 
-// get image Gallery
- function get_remote_gallery($atts) {
+     if( isset($attr['owl']))
+     {
+         $attr['itemtag']="span";
 
+         $output = gallery_shortcode($attr);
 
+         $output = strip_tags($output,'<a><img><span><figcaption>'); // remove extra tags, but keep these
+         $output = str_replace("span", "div", $output); // replace span for div -- removes gallery wrap
+         $output = str_replace('gallery-item', "item", $output); // remove class attribute
 
-   $slug = get_post_field( 'post_name', get_post() );
-   $id = get_post_field( 'id', get_post() );
+         $output = "<div class=\"owl-carousel\" >$output</div>"; // wrap in div
 
+         // begin styles and js
 
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+         static $js_loaded; // only create once
+         if( empty ( $js_loaded )) {
 
-    $body = wp_remote_retrieve_body( $request );
-    $data = json_decode( $body );
+         ob_start();
+         ?>
+         <style>
+             .owl-carousel .item{
+                 margin: 3px;
+             }
+             .owl-carousel .item img{
+                 display: block;
+                 width: 100%;
+                 height: auto;
+             }
+         </style>
+         <script defer src="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.js"></script>
+         <script>
+             jQuery('head').append('<link defer id="owl-carousel-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.css" type="text/css" />');
+             jQuery('head').append('<link defer id="owl-theme-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.theme.css" type="text/css" />');
 
-    $business_id = $data[0]->id;
-    $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
+             jQuery(document).ready(function () {
 
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id);
-    $body = wp_remote_retrieve_body( $request );
-    $dataGallery = json_decode( $body );
+                 // pulling example from -- including CSS
+                 // http://owlgraphic.com/owlcarousel/demos/images.html
 
-    $gallery_attached = $dataGallery;
-    // echo var_dump($gallery_images);
-    // echo '<hr>';
-
-
-    // image source
-    //  https://malta-communities.com/wp-json/wp/v2/media/[ID]
-
-    if ( is_wp_error( $request ) ) {
-       return false;
-    } else {
-          // $gallery = $data["image_upload_1"];
-           // return var_dump($data["_embedded"]["wp:featuredmedia"][0]["source_url"] );
-
-
-            // return var_dump($gallery_images);
-            echo '<div class="owl-carousel">';
-            foreach ($gallery_attached as $key => $jsons) {
-
-              foreach($jsons as $key => $value) {
-                if($key == 'id'){
-                //echo $key . "<br>" . $value;
-                $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
-                  if ($url != null) {
-                echo '<div class="item">
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" /></a>
-                </div>';
-                }
-
-                }
-
-                }
-
-            }
-
-            echo '</div><script>
-            jQuery(document).ready(function($) {
-            jQuery(".owl-carousel").addClass(".owl-theme");
+                 // notice I replaced #id with .class for when you want to have more than one on a page
                  jQuery(".owl-carousel").owlCarousel({
-               loop: true,
-                autoHeight:true,
-               autoplay: true,
-                 margin: 0,
-                 navigation: true,
-               dots: false,
-                 items: 3,
-               });
+                   loop: true,
+                   autoHeight:false,
+                   autoplay: true,
+                     margin: 10,
+                     nav: true,
+                     navigation: true,
+                     navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+                   dots: false,
+                     items: 3,
+                     responsiveClass:true,
+                      responsive:{
+                          0:{
+                              items:1
+                          },
+                          600:{
+                              items:3
+                          },
+                          1000:{
+                              items:3
+                          }
+                      }
+                 });
              });
+         </script>
+         <?php
+         $js_loaded = ob_get_clean(); // store in static var
 
-            </script>';
+         // add the HTML output
+         $output .= $js_loaded;
+         }
+     }
+     else
+     {
+         // default gallery
+         $output = gallery_shortcode($attr);
+     }
 
-    }
+     return $output; // final html
+   }
 
-
-
-
-
-}
-
-add_shortcode('remote-gallery', 'get_remote_gallery');
-
-
-
-// setup header hero images
-
-// get image Gallery
- function get_remote_hero($atts) {
+ // get image Gallery
+  function get_remote_gallery($atts) {
 
 
 
-   $slug = get_post_field( 'post_name', get_post() );
+    $slug = get_post_field( 'post_name', get_post() );
+    $id = get_post_field( 'id', get_post() );
 
-    $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
 
-    $body = wp_remote_retrieve_body( $request );
-    $data = json_decode( $body );
-    $hero_image = $data[0]->cover_image;
+     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
 
-    $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $hero_image;
+     $body = wp_remote_retrieve_body( $request );
+     $data = json_decode( $body );
+     $gallery_images = $data[0]->image_upload_2;
+     $business_id = $data[0]->id;
+     $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
 
-    if ( is_wp_error( $request ) ) {
-       return false;
-    } else {
-      if (!empty($url)) {
-      echo '
-    <img class="img-responsive" style="max-height: 400px" src="' . get_image_url($url) . '" />';
-  }
-    }
+     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id);
+     $body = wp_remote_retrieve_body( $request );
+     $dataGallery = json_decode( $body );
 
-  }
+     $gallery_attached = $dataGallery;
+     // echo var_dump($gallery_images);
+     // echo '<hr>';
 
-  add_shortcode('remote-hero', 'get_remote_hero');
+
+     // image source
+     //  https://malta-communities.com/wp-json/wp/v2/media/[ID]
+
+     if ( is_wp_error( $request ) ) {
+        return false;
+     } else {
+           // $gallery = $data["image_upload_1"];
+            // return var_dump($data["_embedded"]["wp:featuredmedia"][0]["source_url"] );
+
+
+             // return var_dump($gallery_images);
+             echo '<div class="owl-carousel">';
+             foreach ($gallery_attached as $key => $jsons) {
+               foreach($jsons as $key => $value) {
+                 $images_type = $jsons->media_details->sizes->large->mime_type;
+                 $images_url = $jsons->media_details->sizes->large->source_url;
+                 $images_content = $jsons->media_details->sizes->large;
+                 //var_dump($images_content);
+
+                   if($key == 'id' && $images_type != 'image/gif' && $images_content != null){
+
+                echo '<div class="item">
+                 <img class="img-responsive" src="' . $images_url . '" />
+                 </div>';
+                 }
+
+                 }
+
+             }
+
+             echo '</div>';
+
+     }
+
+
+
+
+
+ }
+ add_shortcode('remote-gallery', 'get_remote_gallery');
+
+
+
 
 
 // get image url of a post
@@ -216,36 +241,28 @@ function get_image_url($url) {
    </div>
    <script async defer
      src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAY50ddOWaLBeuRz8tRrgZ_fjAK9cA3OT0&v=3.24&callback=renderMap$rand'></script>
-   <script>
-     function renderMap$rand(){
-       var mapCanvas = document.getElementById('address-map$rand');
-       if(!mapCanvas) return;
-       var latLang = new google.maps.LatLng($lat, $lng);
-       var mapOptions = {
-         disableDefaultUI: $disable_default_UI,
-         center: latLang,
-         zoom: $zoom,
-         mapTypeId: google.maps.MapTypeId.ROADMAP,
-         scrollwheel: false,
-         styles: [{
-           stylers: [{
-             saturation: -100
-           }]
-         }]
-       }
-       var map = new google.maps.Map(mapCanvas, mapOptions);
-       var marker = new google.maps.Marker({
-         position: latLang,
-         map: map,
-         title: '$title',
-         icon: '$icon',
+     <script>
+       function renderMap$rand(){
+         var mapCanvas = document.getElementById('address-map$rand');
+         if(!mapCanvas) return;
+         var latLang = new google.maps.LatLng($lat, $lng);
+         var mapOptions = {
+           disableDefaultUI: false,
+           center: latLang,
+           overviewMapControl: false,
+           zoom: $zoom,
+           mapTypeId: google.maps.MapTypeId.ROADMAP,
+           scrollwheel: true,
+         }
+         var map = new google.maps.Map(mapCanvas, mapOptions);
+         var marker = new google.maps.Marker({
+           position: latLang,
+           map: map,
+           title: '$title',
+           icon: '$icon'
          });
-
-
-
-     };
-
-   </script>";
+       };
+     </script>";
 
  }
  add_shortcode('gmap-location', 'google_map_location');
@@ -276,7 +293,7 @@ function display_client_reviews($atts) {
 
 $repeat_field = get_post_meta( get_the_ID(), 'client_reviews_copy');
 ob_start();
-  if ( $repeat_field ) {
+  if ( $repeat_field  != null) {
   echo '<div>';
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
@@ -517,7 +534,7 @@ add_filter( 'template_include', 'insert_my_template' );
 function insert_my_template( $template )
 {
     if ( 'business' === get_post_type() )
-        return dirname( __FILE__ ) . '/single-business.php';
+        return dirname( __FILE__ ) . '/tpl/single-business.php';
 
     return $template;
 }
