@@ -69,6 +69,8 @@ get_header();
 
 $cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 $cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
+echo $cover_image_url;
+var_dump($cover_image);
 if ($cover_image != null) {
 	$cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
 	$cover_image_url = $cover_image_url[0];
@@ -481,7 +483,6 @@ while ( have_posts() ) :
 					echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
 
 				} else {
-					echo 'gallerie';
 					echo do_shortcode('[remote-gallery]');
 				}
 			?>
