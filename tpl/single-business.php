@@ -48,265 +48,266 @@ get_header();
 				});
 		});
 </script>
-<!-- CSS -->
-<?php
-
-$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
-
-if ($cover_image != null) {
-	$cover_image_url = 'https://malta-communities.com/wp-json/wp/v2/media?id='. $cover_image .'&_fields=source_url';
-	echo $cover_image_url[0];
-	var_dump($cover_image_url);
-
-} else {
-	$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
-
-}
-
- ?>
-
-<style>
-
-.elementor-kit-8 button, .elementor-kit-8 input[type="button"], .elementor-kit-8 input[type="submit"], .elementor-kit-8 .elementor-button.elementor-button {
-    background-color: #e7e7e7;
-}
-
-
-		.owl-carousel .item{
-				margin: 3px;
-		}
-		.owl-carousel .item img{
-				display: block;
-				width: 100%;
-				height: auto;
-		}
-
-
-
-#hero {
-min-height: 300px;
-background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
-}
-
-
-/*  info bar section 2  */
-.infobar {
-background: #25B1AA;
-min-height: 50px;
-text-align: right;
-padding: 0 8%;
-line-height: 50px;
-}
-
-
-ul.list-inline {
-	display: inline-block;
-}
-
-ul.list-inline li {
-	list-style-type: none;
-	color: white;
-	display: inline;
-	padding: 10px 20px;
-
-}
-
-
-ul.list-inline li a {
-	color: white ;
-		font-family: "Rubik", Sans-serif;
-		font-weight: 600;
-}
-
-/* FIN INFOBAR */
-
-
-
-.page-content {
-	transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    z-index: 10;
-		background-color: #FBFBFB;
-		position: relative;
-		padding: 0px 0px 80px 0px;
-		width: 100%;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
-}
-
-
-/* sidebar */
-aside {
-	width: calc(25%);
-	text-align: center;
-	margin: 0 10px;
-	margin-top: -150px;
-	background: white;
-}
-
-.attachment-post-thumbnail {
-	width: 100%;
-    max-width: 170px;
-    height: 170px;
-    border-style: solid;
-    border-width: 2px 2px 2px 2px;
-    border-color: #CACACA;
-    border-radius: 50% 50% 50% 50%;
-		text-align: center;
-		margin: auto;
-}
-
-.heading-red {
-	    color: var( --e-global-color-accent );
-			font-weight: bold;
-}
-
-section#content {
-	width: calc(75%);
-}
-*
-.badge {
-	font-size: 20px;
-}
-
-.owl-prev {
-    width: 15px;
-    height: 100px;
-    position: absolute;
-		background: none !important;
-    top: 40%;
-    margin-left: -20px;
-    display: block !important;
-    border:0px solid black;
-}
-
-.owl-next {
-    width: 15px;
-    height: 100px;
-		background: none !important;
-    position: absolute;
-    top: 40%;
-    right: 10px;
-    display: block !important;
-    border:0px solid black;
-}
-.owl-prev i, .owl-next i {
-	transform: scale(1.2);
-    color: #ccc;
-    background: black;
-    padding: 5px;
-    height: 32px;
-    width: 32px;
-    line-height: 25px;
-    border-radius: 50%;
-    color: white;
-}
-
-.bloc__card {
-	    background-color: var( --e-global-color-15e42c3 );
-			    padding: 15px 15px 15px 15px;
-					box-shadow: 0px 0px 29px -14px rgb(0 0 0 / 10%);
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-
-.bloc__content {
-	border-style: solid;
-    border-color: #EFEFEF75;
-		margin: 25px 10px;
-		    padding: 25px;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-		    border-radius: 20px 20px 20px 20px;
-}
-
-.bloc__content p {
-	line-height: 2.2em;
-}
-
-.owl-carousel .owl-wrapper {
-    display: flex !important;
-}
-.owl-carousel .owl-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-width: initial;
-}
-
-
-/* headings */
-h3 {
-	color: var( --e-global-color-accent );
-    font-family: "Poppins", Sans-serif;
-    font-size: 35px;
-    font-weight: 700;
-    letter-spacing: -1.44px;
-}
-
-.heading-title {
-    color: var( --e-global-color-primary );
-    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
-    font-weight: var( --e-global-typography-primary-font-weight );
-		font-size: 30px;
-}
-
-.social {
-	display: inline-flex;
-	margin-top: 40px;
-	margin-bottom: 20px;
-}
-.social a {
-	margin: 5px;
-	padding: 5px;
-	border-radius: 50%;
-	height: 32px !important;
-
-	width: 32px !important;
-	display: 	block;
-	background:  var( --e-global-color-primary );
-	color: white !important;
-}
-
-.btn-dark {
-  background: var( --e-global-color-accent ) !important;
-	color: white !important;
-}
-
-
-.social a:hover {
-	background: var( --e-global-color-accent ) !important;
-}
-
-.list-unstyled {
-	list-style: none;
-	margin-left: 0;
-	padding-left: 0;
-}
-
-.list-unstyled li {
-	display: inline-block;
-	padding: 3px;
-}
-
-
-/* mobile */
-@media screen and (max-width: 600px) {
-	aside , section#content {
-		width: calc(100%);
-		padding:15Px;
-	}
-}
-
-</style>
 
 
 <?php
 while ( have_posts() ) :
 	the_post();
 
+	?>
+	<!-- CSS -->
+	<?php
+
+	$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
+
+	if ($cover_image != null) {
+		$cover_image_url = 'https://malta-communities.com/wp-json/wp/v2/media?id='. $cover_image .'&_fields=source_url';
+		echo $cover_image_url[0];
+		var_dump($cover_image_url);
+
+	} else {
+		$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
+
+	}
+
+	 ?>
+
+	<style>
+
+	.elementor-kit-8 button, .elementor-kit-8 input[type="button"], .elementor-kit-8 input[type="submit"], .elementor-kit-8 .elementor-button.elementor-button {
+			background-color: #e7e7e7;
+	}
 
 
+			.owl-carousel .item{
+					margin: 3px;
+			}
+			.owl-carousel .item img{
+					display: block;
+					width: 100%;
+					height: auto;
+			}
+
+
+
+	#hero {
+	min-height: 300px;
+	background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
+	}
+
+
+	/*  info bar section 2  */
+	.infobar {
+	background: #25B1AA;
+	min-height: 50px;
+	text-align: right;
+	padding: 0 8%;
+	line-height: 50px;
+	}
+
+
+	ul.list-inline {
+		display: inline-block;
+	}
+
+	ul.list-inline li {
+		list-style-type: none;
+		color: white;
+		display: inline;
+		padding: 10px 20px;
+
+	}
+
+
+	ul.list-inline li a {
+		color: white ;
+			font-family: "Rubik", Sans-serif;
+			font-weight: 600;
+	}
+
+	/* FIN INFOBAR */
+
+
+
+	.page-content {
+		transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+			z-index: 10;
+			background-color: #FBFBFB;
+			position: relative;
+			padding: 0px 0px 80px 0px;
+			width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	}
+
+
+	/* sidebar */
+	aside {
+		width: calc(25%);
+		text-align: center;
+		margin: 0 10px;
+		margin-top: -150px;
+		background: white;
+	}
+
+	.attachment-post-thumbnail {
+		width: 100%;
+			max-width: 170px;
+			height: 170px;
+			border-style: solid;
+			border-width: 2px 2px 2px 2px;
+			border-color: #CACACA;
+			border-radius: 50% 50% 50% 50%;
+			text-align: center;
+			margin: auto;
+	}
+
+	.heading-red {
+				color: var( --e-global-color-accent );
+				font-weight: bold;
+	}
+
+	section#content {
+		width: calc(75%);
+	}
+	*
+	.badge {
+		font-size: 20px;
+	}
+
+	.owl-prev {
+			width: 15px;
+			height: 100px;
+			position: absolute;
+			background: none !important;
+			top: 40%;
+			margin-left: -20px;
+			display: block !important;
+			border:0px solid black;
+	}
+
+	.owl-next {
+			width: 15px;
+			height: 100px;
+			background: none !important;
+			position: absolute;
+			top: 40%;
+			right: 10px;
+			display: block !important;
+			border:0px solid black;
+	}
+	.owl-prev i, .owl-next i {
+		transform: scale(1.2);
+			color: #ccc;
+			background: black;
+			padding: 5px;
+			height: 32px;
+			width: 32px;
+			line-height: 25px;
+			border-radius: 50%;
+			color: white;
+	}
+
+	.bloc__card {
+				background-color: var( --e-global-color-15e42c3 );
+						padding: 15px 15px 15px 15px;
+						box-shadow: 0px 0px 29px -14px rgb(0 0 0 / 10%);
+			transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+			margin-top: 20px;
+			margin-bottom: 0px;
+	}
+
+	.bloc__content {
+		border-style: solid;
+			border-color: #EFEFEF75;
+			margin: 25px 10px;
+					padding: 25px;
+			transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+					border-radius: 20px 20px 20px 20px;
+	}
+
+	.bloc__content p {
+		line-height: 2.2em;
+	}
+
+	.owl-carousel .owl-wrapper {
+			display: flex !important;
+	}
+	.owl-carousel .owl-item img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			max-width: initial;
+	}
+
+
+	/* headings */
+	h3 {
+		color: var( --e-global-color-accent );
+			font-family: "Poppins", Sans-serif;
+			font-size: 35px;
+			font-weight: 700;
+			letter-spacing: -1.44px;
+	}
+
+	.heading-title {
+			color: var( --e-global-color-primary );
+			font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+			font-weight: var( --e-global-typography-primary-font-weight );
+			font-size: 30px;
+	}
+
+	.social {
+		display: inline-flex;
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+	.social a {
+		margin: 5px;
+		padding: 5px;
+		border-radius: 50%;
+		height: 32px !important;
+
+		width: 32px !important;
+		display: 	block;
+		background:  var( --e-global-color-primary );
+		color: white !important;
+	}
+
+	.btn-dark {
+		background: var( --e-global-color-accent ) !important;
+		color: white !important;
+	}
+
+
+	.social a:hover {
+		background: var( --e-global-color-accent ) !important;
+	}
+
+	.list-unstyled {
+		list-style: none;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	.list-unstyled li {
+		display: inline-block;
+		padding: 3px;
+	}
+
+
+	/* mobile */
+	@media screen and (max-width: 600px) {
+		aside , section#content {
+			width: calc(100%);
+			padding:15Px;
+		}
+	}
+
+	</style>
+
+	<?php
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
 		$linkedin_link = get_post_meta(get_the_ID(), 'linkedin_link', TRUE);
 		$instagram_url = get_post_meta(get_the_ID(), 'instagram_url', TRUE);
