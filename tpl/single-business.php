@@ -78,9 +78,9 @@ while ( have_posts() ) :
 		$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
 
 		if ($cover_image != null) {
-			$cover_image_url =  get_image_url($url);
+		//	$cover_image_url =  get_image_url($url);
 
-		} 
+		}
 
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
 		$linkedin_link = get_post_meta(get_the_ID(), 'linkedin_link', TRUE);
