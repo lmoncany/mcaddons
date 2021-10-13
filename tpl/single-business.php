@@ -89,7 +89,6 @@ while ( have_posts() ) :
 	$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
 	$body = wp_remote_retrieve_body( $request );
 	$data = json_decode( $body );
-
   $cover_image_url = $data[0]->cover_image_url;
 
  ?>
