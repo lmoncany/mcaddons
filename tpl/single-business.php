@@ -57,9 +57,10 @@ while ( have_posts() ) :
 
 
 		// get image url of a post
-			$slug = get_post_meta(get_the_ID(), 'post_name', TRUE);
+			$slug = get_post_field( 'post_name', get_post() );
+			echo $slug;
 	 		$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
-
+			echo $url;
 		function get_image_url($url) {
 			$request =  wp_safe_remote_get($url);
 			//
