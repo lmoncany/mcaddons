@@ -137,15 +137,14 @@
 
 
 
-    $slug = get_post_field( 'post_name', get_post() );
-    $id = get_post_field( 'id', get_post() );
+      $slug = get_post_field( 'post_name', get_post() );
+      $id = get_post_field( 'id', get_post() );
 
 
      $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
-
      $body = wp_remote_retrieve_body( $request );
      $data = json_decode( $body );
-     $gallery_images = $data[0]->image_upload_2;
+
      $business_id = $data[0]->id;
      $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
 
@@ -154,12 +153,6 @@
      $dataGallery = json_decode( $body );
 
      $gallery_attached = $dataGallery;
-     // echo var_dump($gallery_images);
-     // echo '<hr>';
-
-
-     // image source
-     //  https://malta-communities.com/wp-json/wp/v2/media/[ID]
 
      if ( is_wp_error( $request ) ) {
         return false;

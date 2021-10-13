@@ -434,8 +434,9 @@ while ( have_posts() ) :
 					$idImages = implode(', ', $images);
 
 					echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
-					
+
 				} else {
+					echo 'gallerie';
 					echo do_shortcode('[remote-gallery]');
 				}
 			?>
