@@ -72,7 +72,7 @@ while ( have_posts() ) :
 		// }
 
 
-		$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
+		$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
 
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
 		$linkedin_link = get_post_meta(get_the_ID(), 'linkedin_link', TRUE);
@@ -252,7 +252,7 @@ while ( have_posts() ) :
 					echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
 
 				} else {
-					echo do_shortcode('[remote-gallery]');
+				//	echo do_shortcode('[remote-gallery]');
 				}
 			?>
 
