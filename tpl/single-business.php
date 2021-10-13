@@ -55,7 +55,7 @@ $cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 
 if ($cover_image != null) {
 	// $cover_image_url = 'https://malta-communities.com/wp-json/wp/v2/media?id='. $cover_image .'&_fields=source_url';
-	$request =  wp_safe_remote_get("https://malta-communities.com/wp-json/wp/v2/media?id='. $cover_image .'&_fields=source_url");
+	$request =  wp_safe_remote_get("https://malta-communities.com/wp-json/wp/v2/media?id='. $cover_image . "&_fields=source_url);
 	$body = wp_remote_retrieve_body( $request );
 	$cover_image_url = json_decode( $body );
 	echo $cover_image_url[0];
