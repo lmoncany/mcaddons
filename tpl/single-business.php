@@ -48,13 +48,13 @@ get_header();
 				});
 		});
 </script>
-
 <!-- CSS -->
 <style>
 
 .elementor-kit-8 button, .elementor-kit-8 input[type="button"], .elementor-kit-8 input[type="submit"], .elementor-kit-8 .elementor-button.elementor-button {
     background-color: #e7e7e7;
 }
+
 
 		.owl-carousel .item{
 				margin: 3px;
@@ -64,10 +64,6 @@ get_header();
 				width: 100%;
 				height: auto;
 		}
-
-</style>
-
-
 
 <?php
 

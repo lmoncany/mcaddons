@@ -69,9 +69,7 @@
          if( empty ( $js_loaded )) {
 
          ob_start();
-         ?>
-      
-         <?php
+
          $js_loaded = ob_get_clean(); // store in static var
 
          // add the HTML output
