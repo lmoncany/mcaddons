@@ -86,14 +86,12 @@ while ( have_posts() ) :
 
 // get image url of a post
 	$slug = get_post_field( 'post_name', get_post() );
-	$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
-	$request =  wp_safe_remote_get($url);
+	$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
 	$body = wp_remote_retrieve_body( $request );
 	$data = json_decode( $body );
-	$cover_url = $data[0]->cover_image_url;
-	return var_dump($data);
-	echo $cover_url;
-	
+
+  $cover_image_url = $data[0]->cover_image_url;
+
  ?>
 
 			</header>
