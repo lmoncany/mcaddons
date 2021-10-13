@@ -56,15 +56,7 @@ while ( have_posts() ) :
 
 
 
-		// get image url of a post
-			$slug = get_post_field( 'post_name', get_post() );
-			$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
-			$request =  wp_safe_remote_get($url);
-			$body = wp_remote_retrieve_body( $request );
-			$data = json_decode( $body );
-			$cover_url = $data[0]->cover_image_url;
-			return var_dump($data);
-			echo $cover_url;
+
 
 
 		$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
@@ -90,7 +82,19 @@ while ( have_posts() ) :
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
 
 	<header id="hero" class="elementor-section elementor-top-section elementor-element elementor-element-f964efb">
+<?php
 
+// get image url of a post
+	$slug = get_post_field( 'post_name', get_post() );
+	$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
+	$request =  wp_safe_remote_get($url);
+	$body = wp_remote_retrieve_body( $request );
+	$data = json_decode( $body );
+	$cover_url = $data[0]->cover_image_url;
+	return var_dump($data);
+	echo $cover_url;
+	
+ ?>
 
 			</header>
 
