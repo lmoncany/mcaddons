@@ -70,52 +70,7 @@
 
          ob_start();
          ?>
-         <style>
-             .owl-carousel .item{
-                 margin: 3px;
-             }
-             .owl-carousel .item img{
-                 display: block;
-                 width: 100%;
-                 height: auto;
-             }
-         </style>
-         <script defer src="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.js"></script>
-         <script>
-             jQuery('head').append('<link defer id="owl-carousel-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.css" type="text/css" />');
-             jQuery('head').append('<link defer id="owl-theme-css" rel="stylesheet" href="https://owlgraphic.com/owlcarousel/owl-carousel/owl.theme.css" type="text/css" />');
-
-             jQuery(document).ready(function () {
-
-                 // pulling example from -- including CSS
-                 // http://owlgraphic.com/owlcarousel/demos/images.html
-
-                 // notice I replaced #id with .class for when you want to have more than one on a page
-                 jQuery(".owl-carousel").owlCarousel({
-                   loop: true,
-                   autoHeight:false,
-                   autoplay: true,
-                     margin: 10,
-                     nav: true,
-                     navigation: true,
-                     navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
-                   dots: false,
-                     items: 3,
-                     responsiveClass:true,
-                      responsive:{
-                          0:{
-                              items:1
-                          },
-                          600:{
-                              items:3
-                          },
-                          1000:{
-                              items:3
-                          }
-                      }
-                 });
-             });
-         </script>
+      
          <?php
          $js_loaded = ob_get_clean(); // store in static var
 
