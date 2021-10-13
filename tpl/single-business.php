@@ -85,11 +85,11 @@ while ( have_posts() ) :
 <?php
 
 // get image url of a post
-	$slug = get_post_field( 'post_name', get_post() );
-	$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
-	$body = wp_remote_retrieve_body( $request );
-	$data = json_decode( $body );
-	var_dump($data[0]->cover_image);
+	// $slug = get_post_field( 'post_name', get_post() );
+	// $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
+	// $body = wp_remote_retrieve_body( $request );
+	// $data = json_decode( $body );
+	// var_dump($data[0]->cover_image);
   // $cover_image_url = $data[0]->cover_image_url;
 
  ?>
