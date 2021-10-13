@@ -66,7 +66,7 @@ while ( have_posts() ) :
 			$body = wp_remote_retrieve_body( $request );
 			$data = json_decode( $body );
 			$cover_url = $data[0]->cover_image_url;
-			var_dump($cover_url);
+			var_dump($data);
 			// return $cover_url;
 
 		}
