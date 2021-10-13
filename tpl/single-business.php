@@ -69,7 +69,7 @@ get_header();
 
 $cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 $cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
-echo $cover_image_url;
+echo $cover_image_url[0];
 
 if ($cover_image != null) {
 	$cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
