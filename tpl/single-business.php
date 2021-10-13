@@ -61,6 +61,18 @@ while ( have_posts() ) :
 
 		$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
 
+			function get_cover_image()
+			{
+				$slug = get_post_field( 'post_name', get_post() );
+				$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+				$body = wp_remote_retrieve_body( $request );
+				$data = json_decode( $body );
+				$cover_image_url = $data[0]->cover_image_url;
+				return $cover_image_url;
+
+		 }
+
+		$cover_image_url = get_cover_image();
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
 		$linkedin_link = get_post_meta(get_the_ID(), 'linkedin_link', TRUE);
 		$instagram_url = get_post_meta(get_the_ID(), 'instagram_url', TRUE);
@@ -83,22 +95,21 @@ while ( have_posts() ) :
 
 	<header id="hero" class="elementor-section elementor-top-section elementor-element elementor-element-f964efb">
 
-
 			</header>
 
 			<section class="infobar">
 					<ul class="list-inline">
 						<?php if ( $website_url != null & $status != 'member' ) : ?>
-	 				 	<li><a href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mcaddons'); ?></a></li>
+	 				 	<li><a target="_blank" href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mcaddons'); ?></a></li>
 
 	 				 	<?php endif; ?>
 
 						<?php if ( $phone != null & $status != 'partner' ) : ?>
-	 				 	<li><a href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mcaddons'); ?></a></li>
+	 				 	<li><a target="_blank" href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mcaddons'); ?></a></li>
 	 				 	<?php endif; ?>
 
 						<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
-						<li><a href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
+						<li><a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
 						<?php endif; ?>
 
 					</ul>
@@ -287,7 +298,7 @@ while ( have_posts() ) :
 
 
 #hero {
-min-height: 300px;
+min-height: 350px;
 background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 }
 
