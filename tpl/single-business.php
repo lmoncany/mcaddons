@@ -60,8 +60,8 @@ while ( have_posts() ) :
 
 
 		// get image url of a post
-		$slug = get_post_field( 'post_name', get_post() );
-	 	$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
+			$slug = get_post_meta(get_the_ID(), 'post_name', TRUE);
+	 		$url =  'https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug;
 
 		function get_image_url($url) {
 			$request =  wp_safe_remote_get($url);
@@ -76,11 +76,6 @@ while ( have_posts() ) :
 
 
 		$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
-
-		if ($cover_image != null) {
-		//	$cover_image_url =  get_image_url($url);
-
-		}
 
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
 		$linkedin_link = get_post_meta(get_the_ID(), 'linkedin_link', TRUE);
