@@ -71,7 +71,7 @@ while ( have_posts() ) :
 
 		}
 
-		echo get_image_url($url);
+
 		$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
 
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
@@ -95,7 +95,7 @@ while ( have_posts() ) :
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
 
 	<header id="hero" class="elementor-section elementor-top-section elementor-element elementor-element-f964efb">
-
+<?php 	echo get_image_url($url); ?>
 
 			</header>
 
