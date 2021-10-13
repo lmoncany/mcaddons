@@ -21,6 +21,7 @@ get_header();
 
 
 <?php
+
 $cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 $cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
 if ($cover_image != null) {
@@ -424,14 +425,22 @@ while ( have_posts() ) :
 
 			<div class="bloc__content">
 				<h3><?php _e('My pictures', 'mcaddons'); ?></h3>
-				<?php // echo do_shortcode('[remote-gallery]');				 ?>
+				<?php
+				$url = site_url();
+
+				if ( $url == 'https://malta-communities.com' ) {
+
+					$images = get_post_meta(get_the_ID(), 'image_upload_1', TRUE);
+					$idImages = implode(', ', $images);
+
+					echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
+					
+				} else {
+					echo do_shortcode('[remote-gallery]');
+				}
+			?>
 
 				<?php
-				$images = get_post_meta(get_the_ID(), 'image_upload_1', TRUE);
-
-				$idImages = implode(', ', $images);
-
-				echo do_shortcode( '[gallerie  owl="true" link="none" size="medium" ids="'.$idImages.'"]' );
 
 				?>
 			</div>

@@ -195,7 +195,6 @@
 
 
 
-
  }
  add_shortcode('remote-gallery', 'get_remote_gallery');
 
