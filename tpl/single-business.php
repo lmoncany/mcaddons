@@ -66,9 +66,8 @@ while ( have_posts() ) :
 			$body = wp_remote_retrieve_body( $request );
 			$data = json_decode( $body );
 			$cover_url = $data[0]->cover_image_url;
-			var_dump($data);
-			// return $cover_url;
-
+			return var_dump($data);
+			
 		}
 
 
@@ -95,7 +94,7 @@ while ( have_posts() ) :
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
 
 	<header id="hero" class="elementor-section elementor-top-section elementor-element elementor-element-f964efb">
-<?php 	$get_image_url =  get_image_url($url);  echo $get_image_url; ?>
+<?php 	 ?>
 
 			</header>
 
