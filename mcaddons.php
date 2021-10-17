@@ -88,57 +88,40 @@
  // get image Gallery
   function get_remote_gallery($atts) {
 
+         $slug = get_post_field( 'post_name', get_post() );
+         $id = get_post_field( 'id', get_post() );
 
 
-      $slug = get_post_field( 'post_name', get_post() );
-      $id = get_post_field( 'id', get_post() );
+        $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+        $body = wp_remote_retrieve_body( $request );
+        $data = json_decode( $body );
 
+        $business_id = $data[0]->id;
+        $dataGallery = $data[0]->image_upload_1;
 
-     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
-     $body = wp_remote_retrieve_body( $request );
-     $data = json_decode( $body );
+        $gallery_attached = $dataGallery;
 
-     $business_id = $data[0]->id;
-     $links_attachments =  'https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id;
+        if ( is_wp_error( $request ) ) {
+           return false;
+        } else {
 
-     $request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/media?parent=' . $business_id);
-     $body = wp_remote_retrieve_body( $request );
-     $dataGallery = json_decode( $body );
+             $gallery_ids = $data[0]->image_upload_1;
+             $idImages = implode(', ', $gallery_ids);
 
-     $gallery_attached = $dataGallery;
+              // echo $idImages;
+                // return var_dump($gallery_images);
+                echo '<div class="owl-carousel">';
+                foreach ($gallery_ids as $key => $value) {
+                  $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value . '?_fields[]=source_url';
 
-     if ( is_wp_error( $request ) ) {
-        return false;
-     } else {
-           // $gallery = $data["image_upload_1"];
-            // return var_dump($data["_embedded"]["wp:featuredmedia"][0]["source_url"] );
+                    echo '<div class="item">
+                     <img class="img-responsive" src="' . get_image_url($url) . '" />
+                     </div>';
+                }
 
+                echo '</div>';
 
-             // return var_dump($gallery_images);
-             echo '<div class="owl-carousel">';
-             foreach ($gallery_attached as $key => $jsons) {
-               foreach($jsons as $key => $value) {
-                 $images_type = $jsons->media_details->sizes->large->mime_type;
-                 $images_url = $jsons->media_details->sizes->large->source_url;
-                 $images_content = $jsons->media_details->sizes->large;
-                 //var_dump($images_content);
-
-                   if($key == 'id' && $images_type != 'image/gif' && $images_content != null){
-
-                echo '<div class="item">
-                 <img class="img-responsive" src="' . $images_url . '" />
-                 </div>';
-                 }
-
-                 }
-
-             }
-
-             echo '</div>';
-
-     }
-
-
+        }
 
 
  }
@@ -150,13 +133,15 @@
 
 // get image url of a post
 function get_image_url($url) {
+  ob_start();
   $request =  wp_safe_remote_get($url);
   //
   $body = wp_remote_retrieve_body( $request );
-  $data = json_decode( $body );
-  $images_url = $data->media_details->sizes->large->source_url;
+  $data  = json_decode( $body );
+  $image_url = $data->source_url;
 
-  return $images_url;
+  return $image_url;
+  ob_get_clean();
 
 }
 
