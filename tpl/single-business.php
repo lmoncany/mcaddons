@@ -58,15 +58,20 @@ get_header();
 
 
 <?php
-$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
-$cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
-if ($cover_image != null) {
-	$cover_image_url = wp_get_attachment_image_src($cover_image, 'full');
-	$cover_image_url = $cover_image_url[0];
-} else {
-	$cover_image_url = "https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg";
+$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
 
-}
+	function get_cover_image()
+	{
+		$slug = get_post_field( 'post_name', get_post() );
+		$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+		$body = wp_remote_retrieve_body( $request );
+		$data = json_decode( $body );
+		$cover_image_url = $data[0]->cover_image_url;
+		return $cover_image_url;
+
+ }
+
+$cover_image_url = get_cover_image();
 
  ?>
 
