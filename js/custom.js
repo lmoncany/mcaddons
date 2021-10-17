@@ -20,6 +20,9 @@ jQuery( document ).ready(function() {
     jQuery('.bloc__location' ).hide();
       }
 
+      if(jQuery('.owl-stage').is(':empty')){
+    jQuery('.bloc__gallery' ).hide();
+      }
 
 
 
