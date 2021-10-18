@@ -328,12 +328,12 @@ while ( have_posts() ) :
 			<section class="infobar">
 					<ul class="list-inline">
 						<?php if ( $website_url != null & $status != 'member' ) : ?>
-	 				 	<li><a href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mcaddons'); ?></a></li>
+	 				 	<li><a href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mc-addons'); ?></a></li>
 
 	 				 	<?php endif; ?>
 
 						<?php if ( $phone != null & $status != 'partner' ) : ?>
-	 				 	<li><a href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mcaddons'); ?></a></li>
+	 				 	<li><a href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mc-addons'); ?></a></li>
 	 				 	<?php endif; ?>
 
 						<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
@@ -366,7 +366,7 @@ while ( have_posts() ) :
 
 
 				 <?php if ( $opening_hours ) : ?>
-				 <p class="heading-red"><?php _e('Openning hours', 'mcaddons'); ?></p>
+				 <p class="heading-red"><?php _e('Openning hours', 'mc-addons'); ?></p>
 				 <p><?php echo $opening_hours; ?></p>
 				 <?php endif; ?>
 
@@ -417,7 +417,7 @@ while ( have_posts() ) :
 			<?php if ( $business_location ) : ?>
 			<div class="bloc__card bloc__location">
 				<div class="title" style="display: flex; align-items:baseline;justify-content: space-between">
-					 <h4 class="bloc__card--title"><?php _e('Location', 'mcaddons'); ?></h4>
+					 <h4 class="bloc__card--title"><?php _e('Location', 'mc-addons'); ?></h4>
  						<a href="	<?php echo 'http://maps.google.com/?q='.$business_location['lat'].','.$business_location['lng']; ?>" target="_blank" class="" role="button">
  								Direction
  						 </a>
@@ -428,7 +428,7 @@ while ( have_posts() ) :
 
 			<?php if ( $status != 'partner' && $status != 'member' ) : ?>
 				<div class="bloc__card contact_form">
-						 <h4 class="bloc__card--title"><?php _e('Contact', 'mcaddons'); ?></h4>
+						 <h4 class="bloc__card--title"><?php _e('Contact', 'mc-addons'); ?></h4>
 
 						 <?php if ( $shortcode_form ) { ?>
 							<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
@@ -447,36 +447,36 @@ while ( have_posts() ) :
 
 			<?php if ( $description ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('Who are you?', 'mcaddons'); ?></h3>
+					<h3><?php _e('Who are you?', 'mc-addons'); ?></h3>
 						<p><?php echo $description; ?></p>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $what_you_do ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('What are you doing?', 'mcaddons'); ?></h3>
+					<h3><?php _e('What are you doing?', 'mc-addons'); ?></h3>
 						<p><?php echo $what_you_do; ?></p>
 				</div>
 			<?php endif; ?>
 
 
 			<div class="bloc__content bloc__reviews">
-				<h3><?php _e('My clients', 'mcaddons'); ?></h3>
+				<h3><?php _e('My clients', 'mc-addons'); ?></h3>
 					<?php  echo do_shortcode('[client-reviews]'); ?>
 			</div>
 
 
 			<div class="bloc__content bloc__gallery">
-				<h3><?php _e('My pictures', 'mcaddons'); ?></h3>
+				<h3><?php _e('My pictures', 'mc-addons'); ?></h3>
 				<?php echo do_shortcode('[remote-gallery]');				 ?>
 
 			</div>
 
 			<?php if ( $download_link ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('More informations', 'mcaddons'); ?></h3>
+					<h3><?php _e('More informations', 'mc-addons'); ?></h3>
 					<a href="	<?php echo $download_link; ?>" target="_blank" class="btn-dark elementor-button-link elementor-button elementor-size-sm" role="button">
-					<?php _e('View', 'mcaddons'); ?>
+					<?php _e('View', 'mc-addons'); ?>
 					</a>
 				</div>
 			<?php endif; ?>
@@ -516,8 +516,9 @@ jQuery( document ).ready(function() {
       if(jQuery('.chapters-list').is(':empty')){
     jQuery('.chapters-list' ).hide();
       }
+
 		});
-		
+
 </script>
 
 	<?php
