@@ -411,7 +411,7 @@ while ( have_posts() ) :
 				?>
 
 
-				<?php if ( !isMobile() ) : ?>
+				<?php if ( isMobile() ) : ?>
 				<section class="infobar">
 						<ul class="list-inline">
 							<?php if ( $website_url != null & $status != 'member' ) : ?>
