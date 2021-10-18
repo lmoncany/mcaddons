@@ -24,6 +24,12 @@ jQuery( document ).ready(function() {
     jQuery('.bloc__gallery' ).hide();
       }
 
+      if(jQuery('.chapters-list').is(':empty')){
+    jQuery('.chapters-list' ).hide();
+      }
+
+
+
 
 
 
