@@ -13,7 +13,7 @@
  # Defaults and options
  ###############
  function custom_plugin_setup() {
-     load_plugin_textdomain('mcaddons', false, dirname(plugin_basename(__FILE__)) . '/lang/');
+     load_plugin_textdomain('mc-addons', false, dirname(plugin_basename(__FILE__)) . '/lang/');
  } // end custom_theme_setup
  add_action('after_setup_theme', 'custom_plugin_setup');
  /**
