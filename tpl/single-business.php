@@ -346,6 +346,7 @@ while ( have_posts() ) :
 
 			</header>
 
+			<?php if ( !isMobile() ) : ?>
 			<section class="infobar">
 					<ul class="list-inline">
 						<?php if ( $website_url != null & $status != 'member' ) : ?>
@@ -363,6 +364,7 @@ while ( have_posts() ) :
 
 					</ul>
 			</section>
+				<?php endif; ?>
 
 
 			<section class="elementor-section elementor-top-section elementor-element elementor-element-41213314 elementor-section-boxed ang-section-padding-initial elementor-section-height-default elementor-section-height-default" data-id="41213314" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;ekit_has_onepagescroll_dot&quot;:&quot;yes&quot;}">
@@ -409,6 +411,27 @@ while ( have_posts() ) :
 				?>
 
 
+				<?php if ( !isMobile() ) : ?>
+				<section class="infobar">
+						<ul class="list-inline">
+							<?php if ( $website_url != null & $status != 'member' ) : ?>
+		 				 	<li><a target="_blank" href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mc-addons'); ?></a></li>
+
+		 				 	<?php endif; ?>
+
+							<?php if ( $phone != null & $status != 'partner' ) : ?>
+		 				 	<li><a target="_blank" href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mc-addons'); ?></a></li>
+		 				 	<?php endif; ?>
+
+							<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
+							<li><a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
+							<?php endif; ?>
+
+						</ul>
+				</section>
+					<?php endif; ?>
+
+
 
 				 	<div class="social">
 
@@ -431,18 +454,6 @@ while ( have_posts() ) :
 						</a>
 					<?php endif; ?>
 
-					<?php if (isMobile() & $website_url != null & $status != 'member' ) : ?>
-					<li><a target="_blank" href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mc-addons'); ?></a></li>
-
-					<?php endif; ?>
-
-					<?php if (isMobile() & $phone != null & $status != 'partner' ) : ?>
-					<li><a target="_blank" href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mc-addons'); ?></a></li>
-					<?php endif; ?>
-
-					<?php if (isMobile() & $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
-					<li><a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
-					<?php endif; ?>
 
 				</div>
 
