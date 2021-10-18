@@ -155,6 +155,7 @@ aside {
 
 section#content {
 	width: calc(75%);
+	margin-bottom: 80px;
 }
 *
 .badge {
@@ -291,6 +292,22 @@ h3 {
 	}
 }
 
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+	aside , section#content {
+		width: calc(100%);
+		padding:15Px;
+	}
+
+}
+
+
 </style>
 
 
@@ -316,6 +333,10 @@ while ( have_posts() ) :
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
+
+		function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+	}
 	?>
 
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
@@ -409,6 +430,20 @@ while ( have_posts() ) :
 							 <i class="fab fa-linkedin"></i>
 						</a>
 					<?php endif; ?>
+
+					<?php if (isMobile() & $website_url != null & $status != 'member' ) : ?>
+					<li><a target="_blank" href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mc-addons'); ?></a></li>
+
+					<?php endif; ?>
+
+					<?php if (isMobile() & $phone != null & $status != 'partner' ) : ?>
+					<li><a target="_blank" href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mc-addons'); ?></a></li>
+					<?php endif; ?>
+
+					<?php if (isMobile() & $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
+					<li><a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
+					<?php endif; ?>
+
 				</div>
 
 			</div>
