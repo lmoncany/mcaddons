@@ -107,7 +107,6 @@
                 echo '<div class="owl-carousel">';
                 foreach ($gallery_ids as $key => $value) {
                   $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
-                  echo $url;
                     echo '<div class="item">
                      <img class="img-responsive" src="' . get_image_url($url) . '" />
                      </div>';
@@ -134,7 +133,7 @@ function get_image_url($url) {
   $data  = json_decode( $body );
 
   $image_url = $data[0]->media_details->sizes->gallery->source_url;
-  var_dump($image_url);
+
   return $image_url;
   ob_get_clean();
 
