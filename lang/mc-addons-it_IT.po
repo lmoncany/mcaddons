@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MC addons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-20 07:25+0000\n"
+"PO-Revision-Date: 2021-10-20 07:32+0000\n"
+"Last-Translator: Soline\n"
+"Language-Team: Italian\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.4; wp-5.8.1\n"
+"X-Domain: mc-addons"
+
+#: tpl/single-business.php:353
+msgid "Website"
+msgstr "Sito web"
+
+#: tpl/single-business.php:358
+msgid "Phone"
+msgstr "Telefono"
+
+#: tpl/single-business.php:392
+msgid "Openning hours"
+msgstr "Orari di apertura"
+
+#: tpl/single-business.php:468
+msgid "Location"
+msgstr "Posizione"
+
+#: tpl/single-business.php:479
+msgid "Contact"
+msgstr "Contact"
+
+#: tpl/single-business.php:498
+msgid "Who are you?"
+msgstr "Chi sei?"
+
+#: tpl/single-business.php:505
+msgid "What are you doing?"
+msgstr "Di Cosa ti occupi?"
+
+#: tpl/single-business.php:512
+msgid "My clients"
+msgstr "I miei clienti"
+
+#: tpl/single-business.php:518
+msgid "My pictures"
+msgstr "Le mie foto"
+
+#: tpl/single-business.php:525
+msgid "More informations"
+msgstr "Maggiori informazioni"
+
+#: tpl/single-business.php:527
+msgid "View"
+msgstr "Vedi"
+
+#. Name of the plugin
+msgid "MC addons"
+msgstr ""
+
+#. Description of the plugin
+msgid "Display content using a shortcode to insert in a page or post"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://flowragency.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "Loic Moncany"
+msgstr ""
