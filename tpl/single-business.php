@@ -312,7 +312,7 @@ h3 {
 	}
 
 	section#content {
-		width: calc(70%);
+		width: calc(65%);
 		padding:15Px;
 	}
 
