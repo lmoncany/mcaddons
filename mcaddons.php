@@ -132,7 +132,7 @@ function get_image_url($url) {
   $body = wp_remote_retrieve_body( $request );
   $data  = json_decode( $body );
 
-  $image_url = $data[0]->media_details->sizes->gallery->source_url;
+  $image_url = $data->media_details->sizes->gallery->source_url;
 
   return $image_url;
   ob_get_clean();
