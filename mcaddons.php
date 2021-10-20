@@ -102,13 +102,12 @@
         if ( is_wp_error( $request ) ) {
            return false;
         } else {
-            var_dump($dataGallery);
              $gallery_ids = $data[0]->image_upload_1;
                 // return var_dump($gallery_images);
                 echo '<div class="owl-carousel">';
                 foreach ($gallery_ids as $key => $value) {
                   $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
-                
+                  echo $url;
                     echo '<div class="item">
                      <img class="img-responsive" src="' . get_image_url($url) . '" />
                      </div>';
