@@ -119,7 +119,7 @@
                      </div>';
                 }
 
-                echo '</div>';
+                echo 'toto</div>';
 
         }
 
