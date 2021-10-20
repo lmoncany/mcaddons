@@ -290,6 +290,12 @@ h3 {
 		width: calc(100%);
 		padding:15Px;
 	}
+
+
+#hero {
+    min-height: 300px;
+    background: url(https://malta-communities.com/wp-content/uploads/2021/10/idyllique-garden-cover-7034199c.png) center center;
+}
 }
 
 
@@ -300,10 +306,20 @@ h3 {
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
-	aside , section#content {
-		width: calc(100%);
+	aside {
+		width: calc(30%);
 		padding:15Px;
 	}
+
+	section#content {
+		width: calc(70%);
+		padding:15Px;
+	}
+
+	#hero {
+    min-height: 300px;
+    background: url(https://malta-communities.com/wp-content/uploads/2021/10/idyllique-garden-cover-7034199c.png) center center;
+}
 
 }
 
