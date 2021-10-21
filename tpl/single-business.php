@@ -501,10 +501,9 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 		//
-		// 	if(jQuery('#noreviews:not(:empty)')){
-		// jQuery('.bloc__reviews' ).hide();
-		// 	}
-
+			if(jQuery('#noreviews').is(':visible')){
+		jQuery('.bloc__reviews' ).hide();
+			}
 
       if(jQuery('.google-map-wrap > div').is(':empty')){
     jQuery('.bloc__location' ).hide();
