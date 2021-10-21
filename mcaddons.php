@@ -102,21 +102,14 @@
         $business_id = $data[0]->id;
         $dataGallery = $data[0]->image_upload_1;
 
-        $gallery_attached = $dataGallery;
-
         if ( is_wp_error( $request ) ) {
            return false;
         } else {
-
              $gallery_ids = $data[0]->image_upload_1;
-             $idImages = implode(', ', $gallery_ids);
-
-              // echo $idImages;
                 // return var_dump($gallery_images);
                 echo '<div class="owl-carousel">';
                 foreach ($gallery_ids as $key => $value) {
-                  $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value . '?_fields[]=source_url';
-
+                  $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
                     echo '<div class="item">
                      <img class="img-responsive" src="' . get_image_url($url) . '" />
                      </div>';
@@ -141,7 +134,8 @@ function get_image_url($url) {
   //
   $body = wp_remote_retrieve_body( $request );
   $data  = json_decode( $body );
-  $image_url = $data->source_url;
+
+  $image_url = $data->media_details->sizes->gallery->source_url;
 
   return $image_url;
   ob_get_clean();
@@ -226,13 +220,16 @@ function display_client_reviews($atts) {
 
 $repeat_field = get_post_meta( get_the_ID(), 'client_reviews_copy');
 ob_start();
-  if ( $repeat_field  != null) {
-  echo '<div>';
+
+  if (count($repeat_field) > 1) {
+
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
-  echo "<div class='review'><span class='testimonial'>{$values[0]}</span><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - {$values[1]}</span></div>";
+  echo "<div class='review'><div class='testimonial'>$values[0]</div><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - $values[1]</span></div>";
   }
-  echo '</div>';
+
+  } else {
+    echo '<p id="noreviews">no reviews yet</p>';
   }
 
 return ob_get_clean();
