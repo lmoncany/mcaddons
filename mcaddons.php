@@ -217,13 +217,13 @@ function display_client_reviews($atts) {
 
 $repeat_field = get_post_meta( get_the_ID(), 'client_reviews_copy');
 ob_start();
-  if ( empty($repeat_field) ) {
+  if (count($repeat_field) == 0) ) {
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
   var_dump($field);
   echo "<div class='review'><div class='testimonial'>$values[0]</div><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - $values[1]</span></div>";
   }
-} else if ( !empty($repeat_field) ) {
+} else {
   echo '<p id="noreviews">no reviews yet</p>';
 }
 
