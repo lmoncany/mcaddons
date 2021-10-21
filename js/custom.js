@@ -12,10 +12,10 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 
-      if(jQuery('.bloc__reviews > div.testimonial').text() == ""){
+      if(jQuery('.testimonial').is(':empty')){
     jQuery('.bloc__reviews' ).hide();
       }
-
+      
       if(jQuery('.google-map-wrap > div').is(':empty')){
     jQuery('.bloc__location' ).hide();
       }
