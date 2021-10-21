@@ -155,6 +155,7 @@ aside {
 
 section#content {
 	width: calc(75%);
+	margin-bottom: 80px;
 }
 *
 .badge {
@@ -289,7 +290,39 @@ h3 {
 		width: calc(100%);
 		padding:15Px;
 	}
+
+
+#hero {
+    min-height: 300px;
+    background: url(https://malta-communities.com/wp-content/uploads/2021/10/idyllique-garden-cover-7034199c.png) center center;
 }
+}
+
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+	aside {
+		width: calc(30%);
+		padding:15Px;
+	}
+
+	section#content {
+		width: calc(65%);
+		padding:15Px;
+	}
+
+	#hero {
+    min-height: 300px;
+    background: url(https://malta-communities.com/wp-content/uploads/2021/10/idyllique-garden-cover-7034199c.png) center center;
+}
+
+}
+
 
 </style>
 
@@ -316,6 +349,10 @@ while ( have_posts() ) :
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
+
+		function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+	}
 	?>
 
 <main <?php post_class( 'elementor-page-118' ); ?> role="main">
@@ -325,23 +362,25 @@ while ( have_posts() ) :
 
 			</header>
 
+			<?php if ( !isMobile() ) : ?>
 			<section class="infobar">
 					<ul class="list-inline">
 						<?php if ( $website_url != null & $status != 'member' ) : ?>
-	 				 	<li><a href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mcaddons'); ?></a></li>
+	 				 	<li><a target="_blank" href="<?php echo $website_url; ?>"><i aria-hidden="true" class="icon icon-link"></i> <?php _e('Website', 'mc-addons'); ?></a></li>
 
 	 				 	<?php endif; ?>
 
 						<?php if ( $phone != null & $status != 'partner' ) : ?>
-	 				 	<li><a href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mcaddons'); ?></a></li>
+	 				 	<li><a target="_blank" href="tel:<?php echo $phone; ?>"><i aria-hidden="true" class="icon icon-phone"></i> <?php _e('Phone', 'mc-addons'); ?></a></li>
 	 				 	<?php endif; ?>
 
 						<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
-						<li><a href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
+						<li><a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>"><i aria-hidden="true" class="icon icon-envelope1"></i> Contact</a></li>
 						<?php endif; ?>
 
 					</ul>
 			</section>
+				<?php endif; ?>
 
 
 			<section class="elementor-section elementor-top-section elementor-element elementor-element-41213314 elementor-section-boxed ang-section-padding-initial elementor-section-height-default elementor-section-height-default" data-id="41213314" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;ekit_has_onepagescroll_dot&quot;:&quot;yes&quot;}">
@@ -366,7 +405,7 @@ while ( have_posts() ) :
 
 
 				 <?php if ( $opening_hours ) : ?>
-				 <p class="heading-red"><?php _e('Openning hours', 'mcaddons'); ?></p>
+				 <p class="heading-red"><?php _e('Openning hours', 'mc-addons'); ?></p>
 				 <p><?php echo $opening_hours; ?></p>
 				 <?php endif; ?>
 
@@ -386,6 +425,9 @@ while ( have_posts() ) :
 	    	}
 					echo '</ul>';
 				?>
+
+
+
 
 
 
@@ -409,6 +451,28 @@ while ( have_posts() ) :
 							 <i class="fab fa-linkedin"></i>
 						</a>
 					<?php endif; ?>
+
+					<?php if (isMobile() ) : ?>
+					<?php if ( $website_url != null & $status != 'member' ) : ?>
+					<a target="_blank" href="<?php echo $website_url; ?>">
+						<i aria-hidden="true" class="icon icon-link"></i>
+					</a>
+					<?php endif; ?>
+
+					<?php if ( $phone != null & $status != 'partner' ) : ?>
+					<a target="_blank" href="tel:<?php echo $phone; ?>">
+						<i aria-hidden="true" class="icon icon-phone"></i>
+					</a>
+					<?php endif; ?>
+
+					<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
+					<a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>">
+						<i aria-hidden="true" class="icon icon-envelope1"></i> </a>
+					<?php endif; ?>
+						<?php endif; ?>
+
+
+
 				</div>
 
 			</div>
@@ -417,7 +481,7 @@ while ( have_posts() ) :
 			<?php if ( $business_location ) : ?>
 			<div class="bloc__card bloc__location">
 				<div class="title" style="display: flex; align-items:baseline;justify-content: space-between">
-					 <h4 class="bloc__card--title"><?php _e('Location', 'mcaddons'); ?></h4>
+					 <h4 class="bloc__card--title"><?php _e('Location', 'mc-addons'); ?></h4>
  						<a href="	<?php echo 'http://maps.google.com/?q='.$business_location['lat'].','.$business_location['lng']; ?>" target="_blank" class="" role="button">
  								Direction
  						 </a>
@@ -428,7 +492,7 @@ while ( have_posts() ) :
 
 			<?php if ( $status != 'partner' && $status != 'member' ) : ?>
 				<div class="bloc__card contact_form">
-						 <h4 class="bloc__card--title"><?php _e('Contact', 'mcaddons'); ?></h4>
+						 <h4 class="bloc__card--title"><?php _e('Contact', 'mc-addons'); ?></h4>
 
 						 <?php if ( $shortcode_form ) { ?>
 							<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
@@ -447,36 +511,36 @@ while ( have_posts() ) :
 
 			<?php if ( $description ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('Who are you?', 'mcaddons'); ?></h3>
+					<h3><?php _e('Who are you?', 'mc-addons'); ?></h3>
 						<p><?php echo $description; ?></p>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $what_you_do ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('What are you doing?', 'mcaddons'); ?></h3>
+					<h3><?php _e('What are you doing?', 'mc-addons'); ?></h3>
 						<p><?php echo $what_you_do; ?></p>
 				</div>
 			<?php endif; ?>
 
 
 			<div class="bloc__content bloc__reviews">
-				<h3><?php _e('My clients', 'mcaddons'); ?></h3>
+				<h3><?php _e('My clients', 'mc-addons'); ?></h3>
 					<?php  echo do_shortcode('[client-reviews]'); ?>
 			</div>
 
 
 			<div class="bloc__content bloc__gallery">
-				<h3><?php _e('My pictures', 'mcaddons'); ?></h3>
+				<h3><?php _e('My pictures', 'mc-addons'); ?></h3>
 				<?php echo do_shortcode('[remote-gallery]');				 ?>
 
 			</div>
 
 			<?php if ( $download_link ) : ?>
 				<div class="bloc__content">
-					<h3><?php _e('More informations', 'mcaddons'); ?></h3>
+					<h3><?php _e('More informations', 'mc-addons'); ?></h3>
 					<a href="	<?php echo $download_link; ?>" target="_blank" class="btn-dark elementor-button-link elementor-button elementor-size-sm" role="button">
-					<?php _e('View', 'mcaddons'); ?>
+					<?php _e('View', 'mc-addons'); ?>
 					</a>
 				</div>
 			<?php endif; ?>
@@ -516,6 +580,7 @@ jQuery( document ).ready(function() {
       if(jQuery('.chapters-list').is(':empty')){
     jQuery('.chapters-list' ).hide();
       }
+
 		});
 
 </script>

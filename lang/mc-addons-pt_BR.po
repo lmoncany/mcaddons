@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MC addons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-18 06:52+0000\n"
+"PO-Revision-Date: 2021-10-18 07:03+0000\n"
+"Last-Translator: The\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt-BR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.4; wp-5.8.1\n"
+"X-Domain: mc-addons"
+
+#: tpl/single-business.php:331
+msgid "Website"
+msgstr ""
+
+#: tpl/single-business.php:336
+msgid "Phone"
+msgstr "Telefone"
+
+#: tpl/single-business.php:369
+msgid "Openning hours"
+msgstr "Horários de funcionamento"
+
+#: tpl/single-business.php:420
+msgid "Location"
+msgstr "Localização"
+
+#: tpl/single-business.php:431
+msgid "Contact"
+msgstr "Contato"
+
+#: tpl/single-business.php:450
+msgid "Who are you?"
+msgstr "Quem somos"
+
+#: tpl/single-business.php:457
+msgid "What are you doing?"
+msgstr "Sobre Nós"
+
+#: tpl/single-business.php:464
+msgid "My clients"
+msgstr ""
+
+#: tpl/single-business.php:470
+msgid "My pictures"
+msgstr "Galeria"
+
+#: tpl/single-business.php:477
+msgid "More informations"
+msgstr "Mais Informações"
+
+#: tpl/single-business.php:479
+msgid "View"
+msgstr ""
+
+#. Name of the plugin
+msgid "MC addons"
+msgstr ""
+
+#. Description of the plugin
+msgid "Display content using a shortcode to insert in a page or post"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://flowragency.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "Loic Moncany"
+msgstr ""

@@ -8,6 +8,4 @@ jQuery( document ).ready(function() {
 
 
 
-
-
 });
