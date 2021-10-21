@@ -501,8 +501,6 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 
-
-
       if(jQuery('.google-map-wrap > div').is(':empty')){
     jQuery('.bloc__location' ).hide();
       }
