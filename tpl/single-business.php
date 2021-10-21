@@ -501,9 +501,7 @@ jQuery( document ).ready(function() {
     jQuery('.contact_form' ).hide();
       }
 
-      if(jQuery('p.testimonial').text() == ""){
-    jQuery('.bloc__reviews' ).hide();
-      }
+
 
       if(jQuery('.google-map-wrap > div').is(':empty')){
     jQuery('.bloc__location' ).hide();
@@ -517,7 +515,7 @@ jQuery( document ).ready(function() {
     jQuery('.chapters-list' ).hide();
       }
 		});
-		
+
 </script>
 
 	<?php
