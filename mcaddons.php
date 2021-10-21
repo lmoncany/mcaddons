@@ -217,7 +217,6 @@ function display_client_reviews($atts) {
 
 $repeat_field = get_post_meta( get_the_ID(), 'client_reviews_copy');
 ob_start();
-  var_dump($repeat_field);
   if ( empty($repeat_field) ) {
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
@@ -225,7 +224,7 @@ ob_start();
   echo "<div class='review'><div class='testimonial'>$values[0]</div><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - $values[1]</span></div>";
   }
 } else {
-  echo 'no reviews yet';
+  echo '<p id="noreviews">no reviews yet</p>';
 }
 
 return ob_get_clean();
