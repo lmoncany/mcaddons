@@ -221,7 +221,7 @@ ob_start();
   echo '<div>';
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
-  echo "<div class='review'><span class='testimonial'>{$values[0]}</span><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - {$values[1]}</span></div>";
+  echo "<div class='review'><div class='testimonial'>{$values[0]}</div><span class='name' style='margin-top: 10px;'>⭐⭐⭐⭐⭐ - {$values[1]}</span></div>";
   }
   echo '</div>';
   }
