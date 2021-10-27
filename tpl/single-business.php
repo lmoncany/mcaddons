@@ -398,15 +398,14 @@ while ( have_posts() ) :
 
 
 				<p>
-				<a href="#" class="elementor-button-link elementor-button elementor-size-xs <?php echo $status; ?>" role="button">
+
 					<?php
 					if ($status == 'free_article') {
 						$status = 'partner';
 					}
-
-					 echo $status;
-
 					 ?>
+				<a href="#" class="elementor-button-link elementor-button elementor-size-xs <?php echo $status; ?>" role="button">
+					<?php  echo $status; ?>
 					</a>
 				</p>
 
