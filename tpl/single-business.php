@@ -350,6 +350,11 @@ while ( have_posts() ) :
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
 
+
+		if ($status == 'free_article') {
+			$status = 'partner';
+		}
+	
 		function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 	}
@@ -399,11 +404,7 @@ while ( have_posts() ) :
 
 				<p>
 
-					<?php
-					if ($status == 'free_article') {
-						$status = 'partner';
-					}
-					 ?>
+
 				<a href="#" class="elementor-button-link elementor-button elementor-size-xs <?php echo $status; ?>" role="button">
 					<?php  echo $status; ?>
 					</a>
