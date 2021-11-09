@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 <script>
-		jQuery('head').append('<link defer id="owl-carousel-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" type="text/css" />');
-		jQuery('head').append('<link defer id="owl-theme-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" type="text/css" />');
+		jQuery('head').append('<link id="owl-carousel-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" type="text/css" />');
+		jQuery('head').append('<link id="owl-theme-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" type="text/css" />');
 
 		jQuery(document).ready(function () {
 
@@ -354,7 +354,7 @@ while ( have_posts() ) :
 		if ($status == 'free_article') {
 			$status = 'partner';
 		}
-	
+
 		function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 	}
