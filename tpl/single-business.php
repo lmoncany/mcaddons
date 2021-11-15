@@ -294,8 +294,9 @@ h3 {
 
 #hero {
     min-height: 300px;
-    background: url(https://malta-communities.com/wp-content/uploads/2021/10/idyllique-garden-cover-7034199c.png) center center;
+		background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 }
+
 }
 
 
