@@ -413,7 +413,7 @@ while ( have_posts() ) :
 
 
 				 <?php if ( $opening_hours ) : ?>
-				 <p class="heading-red"><?php _e('Openning hours', 'mc-addons'); ?></p>
+				 <p class="heading-red"><?php _e('Opening hours', 'mc-addons'); ?></p>
 				 <p><?php echo $opening_hours; ?></p>
 				 <?php endif; ?>
 
