@@ -359,10 +359,10 @@ while ( have_posts() ) :
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
 
-		$img_atts = get_cover_image();
-		if ($img_atts == null) {
-			$img_atts = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
-		}
+		// $img_atts = get_cover_image();
+		// if ($img_atts == null) {
+		// 	$img_atts = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
+		// }
 
 		if ($status == 'free_article') {
 			$status = 'partner';
@@ -383,7 +383,7 @@ while ( have_posts() ) :
 
 	#hero {
 	min-height: 300px;
-	background : url('<?php echo $img_atts; ?>') center/cover fixed;
+	background : url('https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg') center/cover fixed;
 	}
 
 	</style>
