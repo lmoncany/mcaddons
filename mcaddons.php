@@ -225,7 +225,7 @@ ob_start();
 
   foreach ($repeat_field as $field) {
   $values = explode( '| ', $field );
-  echo "<div class='review'><div class='testimonial'>$values[0]</div><span class='name' style='margin-top: 10px;'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFLQ_OUiujfzym3T8ILVbpXJLodQ8MIda2_lLz_YZTc02tYz3Uskc_C2zxrOkyL17qew&amp;usqp=CAU' height='50px' width='100'> - $values[1]</span></div>";
+  echo "<div class='review'><div class='testimonial'>$values[0]</div><span class='name' style='display: flex; align-items: center;margin-top: 10px;'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFLQ_OUiujfzym3T8ILVbpXJLodQ8MIda2_lLz_YZTc02tYz3Uskc_C2zxrOkyL17qew&amp;usqp=CAU' height='50px' width='100'> - $values[1]</span></div>";
   }
 
   } else {
