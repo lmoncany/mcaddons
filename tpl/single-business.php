@@ -320,22 +320,26 @@ h3 {
 
 
 </style>
+<?php
 
+function get_cover_image()
+{
+	$slug = get_post_field( 'post_name', get_post() );
+	$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
+	$body = wp_remote_retrieve_body( $request );
+	$data = json_decode( $body );
+	$cover_image_url = $data[0]->cover_image_url;
+	return $cover_image_url;
+
+}
+
+ ?>
 
 <?php
 while ( have_posts() ) :
 	the_post();
 
-		function get_cover_image()
-		{
-			$slug = get_post_field( 'post_name', get_post() );
-			$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
-			$body = wp_remote_retrieve_body( $request );
-			$data = json_decode( $body );
-			$cover_image_url = $data[0]->cover_image_url;
-			return $cover_image_url;
 
-	 }
 
 
 		$you_catch_phrase = get_post_meta(get_the_ID(), 'you_catch_phrase', TRUE);
@@ -357,7 +361,7 @@ while ( have_posts() ) :
 
 		$img_atts = get_cover_image();
 		if ($img_atts == null) {
-			$img_atts[0] = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
+			$img_atts = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
 		}
 
 		if ($status == 'free_article') {
@@ -379,7 +383,7 @@ while ( have_posts() ) :
 
 	#hero {
 	min-height: 300px;
-	background : url('<?php echo $img_atts[0] ?>') center/cover fixed;
+	background : url('<?php echo $img_atts; ?>') center/cover fixed;
 	}
 
 	</style>
