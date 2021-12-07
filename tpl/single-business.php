@@ -77,6 +77,7 @@ $cover_image_url = get_cover_image();
 
 #hero {
 min-height: 300px;
+background: url('https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg') center/cover fixed;
 background : url('<?php echo $cover_image_url; ?>') center/cover fixed;
 }
 
