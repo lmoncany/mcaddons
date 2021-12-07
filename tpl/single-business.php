@@ -66,12 +66,7 @@ $cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/mal
 		$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
 		$body = wp_remote_retrieve_body( $request );
 		$data = json_decode( $body );
-		if ($cover_image_url != null) {
-			$cover_image_url = $data[0]->cover_image_url;
-		} else {
-			$cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
-		}
-
+		$cover_image_url = $data[0]->cover_image_url;
 		return $cover_image_url;
 
  }
