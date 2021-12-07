@@ -66,8 +66,11 @@ $cover_image_url = 'https://malta-communities.com/wp-content/uploads/2021/07/mal
 		$request =  wp_safe_remote_get('https://malta-communities.com/wp-json/wp/v2/business/?slug=' . $slug);
 		$body = wp_remote_retrieve_body( $request );
 		$data = json_decode( $body );
-		$cover_image_url = $data[0]->cover_image_url;
-		return $cover_image_url;
+		$remote_url = $data[0]->cover_image_url;
+		if (empty($remote_url)) {
+			$remote_url = 'https://malta-communities.com/wp-content/uploads/2021/07/malta_itravelling12132-1.jpg';
+		}
+		return $remote_url;
 
  }
 
@@ -350,6 +353,7 @@ while ( have_posts() ) :
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
+		$reviews = get_post_meta( get_the_ID(), 'client_reviews_copy');
 
 
 		if ($status == 'free_article') {
@@ -531,17 +535,17 @@ while ( have_posts() ) :
 				</div>
 			<?php endif; ?>
 
-
+			reviews
+			<?php if ( empty($reviews) ) : ?>
 			<div class="bloc__content bloc__reviews">
 				<h3><?php _e('My clients', 'mc-addons'); ?></h3>
 					<?php  echo do_shortcode('[client-reviews]'); ?>
 			</div>
-
+			<?php endif; ?>
 
 			<div class="bloc__content bloc__gallery">
 				<h3><?php _e('My pictures', 'mc-addons'); ?></h3>
 				<?php echo do_shortcode('[remote-gallery]');				 ?>
-
 			</div>
 
 			<?php if ( $download_link ) : ?>
