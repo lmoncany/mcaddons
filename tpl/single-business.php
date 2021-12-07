@@ -535,7 +535,7 @@ while ( have_posts() ) :
 				</div>
 			<?php endif; ?>
 
-			reviews
+			
 			<?php if ( empty($reviews) ) : ?>
 			<div class="bloc__content bloc__reviews">
 				<h3><?php _e('My clients', 'mc-addons'); ?></h3>
