@@ -353,7 +353,7 @@ while ( have_posts() ) :
 		$cover_image =  get_post_meta(get_the_ID(), 'cover_image', TRUE);
 		$shortcode_form = get_post_meta(get_the_ID(), 'shortcode_form', TRUE);
 		$business_location =  get_post_meta( get_the_ID(), 'business_address', true);
-		$reviews = get_post_meta( get_the_ID(), 'client_reviews_copy');
+		$reviews = get_post_meta( get_the_ID(), 'client_reviews_copy', true);
 
 
 		if ($status == 'free_article') {
