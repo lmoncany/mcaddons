@@ -536,7 +536,7 @@ while ( have_posts() ) :
 			<?php endif; ?>
 
 
-			<?php if ( empty($reviews) ) : ?>
+			<?php if ( $reviews ) : ?>
 			<div class="bloc__content bloc__reviews">
 				<h3><?php _e('My clients', 'mc-addons'); ?></h3>
 					<?php  echo do_shortcode('[client-reviews]'); ?>
