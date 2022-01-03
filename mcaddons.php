@@ -106,12 +106,17 @@
            return false;
         } else {
              $gallery_ids = $data[0]->image_upload_1;
+
+             $items = array();
+             foreach($gallery_ids as $key => $value) {
+               $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
+              $items[] = get_image_url($url) ;
+             }
                 // return var_dump($gallery_images);
                 echo '<div class="owl-carousel">';
-                foreach ($gallery_ids as $key => $value) {
-                  $url = 'https://malta-communities.com/wp-json/wp/v2/media/' . $value;
+                foreach ($items as $key => $value) {
                     echo '<div class="item">
-                     <img class="img-responsive" src="' . get_image_url($url) . '" />
+                     <img class="img-responsive" src="' . $value . '" />
                      </div>';
                 }
 
@@ -135,7 +140,7 @@ function get_image_url($url) {
   $body = wp_remote_retrieve_body( $request );
   $data  = json_decode( $body );
 
-  $image_url = $data->media_details->sizes->gallery->source_url;
+  $image_url = $data->media_details->sizes->full->source_url;
 
   return $image_url;
   ob_get_clean();
