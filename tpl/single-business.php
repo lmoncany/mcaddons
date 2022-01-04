@@ -165,6 +165,12 @@ section#content {
 	font-size: 20px;
 }
 
+.caldera-grid label {
+    color: black !important;
+    text-align: left;
+    display: inherit !important;
+}
+
 .owl-prev {
     width: 15px;
     height: 100px;
@@ -507,7 +513,7 @@ while ( have_posts() ) :
 						 <h4 class="bloc__card--title"><?php _e('Contact', 'mc-addons'); ?></h4>
 
 						 <?php if ( $shortcode_form ) { ?>
-							<?php  echo do_shortcode('[elementor-template id="3683"]'); ?>
+							<?php  echo do_shortcode($shortcode_form); ?>
 						<?php } else { ?>
 							<p class="no_form">Formulaire indisponible</p>
 						<?php } ?>
