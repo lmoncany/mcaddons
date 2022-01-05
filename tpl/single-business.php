@@ -242,7 +242,7 @@ section#content {
 h3 {
 	color: var( --e-global-color-accent );
     font-family: "Poppins", Sans-serif;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: -1.44px;
 }
@@ -251,7 +251,7 @@ h3 {
     color: var( --e-global-color-primary );
     font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
     font-weight: var( --e-global-typography-primary-font-weight );
-		font-size: 30px;
+		font-size: 24px !important;
 }
 
 .social {

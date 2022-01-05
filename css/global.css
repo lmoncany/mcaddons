@@ -45,22 +45,26 @@ GitHub Plugin URI: https://github.com/lmoncany/mcaddons
 
 
 .gold {
+  text-transform: capitalize;
   background: #FFC400 !important;
   color: white !important;
 
 }
 
 .sponsor {
+  text-transform: capitalize;
   background: #333333 !important;
   color: white !important;
 }
 
 .partner {
+  text-transform: capitalize;
   background: #DB234B !important;
   color: white !important;
 }
 
 .member {
+  text-transform: capitalize;
   background: #50D6CF !important;
   color: white !important;
 }
