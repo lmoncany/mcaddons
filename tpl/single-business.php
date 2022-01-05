@@ -460,39 +460,39 @@ while ( have_posts() ) :
 
 					<?php if ( $facebook_url_copy ) : ?>
 					 <a href="	<?php echo $facebook_url_copy; ?>" target="_blank" class="" role="button">
-						 <i class="icon icon-facebook"></i>
+						 <i class="fab fa-facebook"></i>
 
 					 </a>
 					 <?php endif; ?>
 
 					 <?php if ( $instagram_url ) : ?>
 						<a href="	<?php echo $instagram_url; ?>" target="_blank" class="" role="button">
-							 <i class="ficon icon-instagram"></i>
+							 <i class="fab fa-instagram"></i>
 						</a>
 						<?php endif; ?>
 
 					 <?php if ( $linkedin_link ) : ?>
 						<a href="	<?php echo $linkedin_link ?>" target="_blank" class="" role="button">
-							 <i class="icon icon-linkedin"></i>
+							 <i class="fab fa-linkedin"></i>
 						</a>
 					<?php endif; ?>
 
 					<?php if (isMobile() ) : ?>
 					<?php if ( $website_url != null & $status != 'member' ) : ?>
 					<a target="_blank" href="<?php echo $website_url; ?>">
-						<i aria-hidden="true" class="icon icon-link"></i>
+						<i aria-hidden="true" class="fab fa-link"></i>
 					</a>
 					<?php endif; ?>
 
 					<?php if ( $phone != null & $status != 'partner' ) : ?>
 					<a target="_blank" href="tel:<?php echo $phone; ?>">
-						<i aria-hidden="true" class="icon icon-phone"></i>
+						<i aria-hidden="true" class="fab fa-phone"></i>
 					</a>
 					<?php endif; ?>
 
 					<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
 					<a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>">
-						<i aria-hidden="true" class="icon icon-envelope1"></i> </a>
+						<i aria-hidden="true" class="fab fa-envelope1"></i> </a>
 					<?php endif; ?>
 						<?php endif; ?>
 
