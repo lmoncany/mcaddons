@@ -293,6 +293,11 @@ h3 {
 }
 
 
+button:focus, [type="submit"]:focus, [type="button"]:focus  {
+	outline: none;
+}
+
+
 /* mobile */
 @media screen and (max-width: 600px) {
 	aside , section#content {
@@ -307,6 +312,8 @@ h3 {
 }
 
 }
+
+
 
 
 /*
@@ -453,20 +460,20 @@ while ( have_posts() ) :
 
 					<?php if ( $facebook_url_copy ) : ?>
 					 <a href="	<?php echo $facebook_url_copy; ?>" target="_blank" class="" role="button">
-						 <i class="fab fa-facebook"></i>
+						 <i class="icon icon-facebook"></i>
 
 					 </a>
 					 <?php endif; ?>
 
 					 <?php if ( $instagram_url ) : ?>
 						<a href="	<?php echo $instagram_url; ?>" target="_blank" class="" role="button">
-							 <i class="fab fa-instagram"></i>
+							 <i class="ficon icon-instagram"></i>
 						</a>
 						<?php endif; ?>
 
 					 <?php if ( $linkedin_link ) : ?>
 						<a href="	<?php echo $linkedin_link ?>" target="_blank" class="" role="button">
-							 <i class="fab fa-linkedin"></i>
+							 <i class="icon icon-linkedin"></i>
 						</a>
 					<?php endif; ?>
 
