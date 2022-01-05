@@ -492,7 +492,7 @@ while ( have_posts() ) :
 
 					<?php if ( $email_address__for_customer_ != null  & $status != 'partner' ) : ?>
 					<a target="_blank" href="mailto:<?php echo $email_address__for_customer_; ?>">
-						<i aria-hidden="true" class="fa fa-envelope1"></i> </a>
+						<i aria-hidden="true" class="fa fa-envelope"></i> </a>
 					<?php endif; ?>
 						<?php endif; ?>
 
